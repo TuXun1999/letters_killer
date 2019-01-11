@@ -12,12 +12,6 @@ def get_key(event):
 		letter = 'r'
 	elif event.key == pygame.K_t:
 		letter = 't'
-	elif event.key == pygame.K_t:
-		letter = 't'
-	elif event.key == pygame.K_t:
-		letter = 't'
-	elif event.key == pygame.K_y:
-		letter = 'y'
 	elif event.key == pygame.K_y:
 		letter = 'y'
 	elif event.key == pygame.K_u:
@@ -34,6 +28,8 @@ def get_key(event):
 		letter = 's'
 	elif event.key == pygame.K_d:
 		letter = 'd'
+	elif event.key == pygame.K_f:
+		letter = 'f'
 	elif event.key == pygame.K_g:
 		letter = 'g'
 	elif event.key == pygame.K_h:

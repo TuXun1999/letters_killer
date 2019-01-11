@@ -12,4 +12,7 @@ class Settings():
 
 		self.text_color = (112.5, 112.5, 112.5)
 		self.txt_bg_color = (255, 255, 255)
-		self.fall_speed = 0.1
+		self.fall_speed = 0.3
+		
+		
+		self.beep_sound = "sounds/beep.wav"

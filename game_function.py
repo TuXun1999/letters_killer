@@ -8,19 +8,27 @@ from targets import Target
 from get_key import get_key as get_key
 
 		
-def check_events_keydown(event, targets):
+def check_events_keydown(event, settings, targets, aim, sounds):
 	letter = get_key(event)
 	for target in targets.copy():
 		if target.letter == letter:
+			aim.move(target.rect.centerx, target.rect.centery)
+			aim.see_me = True
+			sounds.beep.play()
 			targets.remove(target)
+			break
 			
-			
-def check_events(targets):
+def check_events_keyup( aim):
+	aim.see_me = False
+				
+def check_events(targets, settings, aim, sounds):
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
 			sys.exit()
 		elif event.type == pygame.KEYDOWN:
-			check_events_keydown(event, targets)
+			check_events_keydown(event, settings, targets, aim, sounds)
+		elif event.type == pygame.KEYUP:
+			check_events_keyup(aim)
 	
 	
 def create_targets(screen, game_settings, targets):
@@ -54,7 +62,7 @@ def update_targets(screen, game_settings, targets):
 			targets.remove(target)
 			
 			
-def update_screen(screen, game_settings, targets):
+def update_screen(screen, game_settings, targets, aim):
 	#Refresh the screen in each loop
 	screen.fill(game_settings.bg_color)
 	
@@ -62,6 +70,8 @@ def update_screen(screen, game_settings, targets):
 	target_list = targets.sprites()
 	for target in target_list:
 		target.blitme()
-		
+	
+	if aim.see_me:
+		aim.blitme()
 		
 	pygame.display.flip()

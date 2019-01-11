@@ -34,8 +34,8 @@ class Target(Sprite):
 		
 		#attributes for the position
 		self.fall_speed = settings.fall_speed
-		self.y = self.rect.y
-		self.msg_y = self.msg_image_rect.y
+		self.y = float(self.rect.y)
+		self.msg_y = float(self.msg_image_rect.y)
 	
 	def blitme(self):
 		'''
