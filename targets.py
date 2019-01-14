@@ -43,6 +43,7 @@ class Target(Sprite):
 		'''
 		self.screen.blit(self.image, self.rect)
 		self.screen.blit(self.msg_image, self.msg_image_rect)
+		
 	
 	def update(self):
 		'''
@@ -53,5 +54,7 @@ class Target(Sprite):
 		
 		self.rect.y = self.y
 		self.msg_image_rect.y = self.msg_y
+
+		
 	
 		

@@ -9,6 +9,7 @@ class Settings():
 		self.bg_color = (255, 255, 255)
 		
 		
+		
 
 		self.text_color = (112.5, 112.5, 112.5)
 		self.txt_bg_color = (255, 255, 255)
@@ -16,3 +17,7 @@ class Settings():
 		
 		
 		self.beep_sound = "sounds/beep.wav"
+		
+		
+		
+		self.button_pos_scale = 1.2

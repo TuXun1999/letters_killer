@@ -20,15 +20,34 @@ def check_events_keydown(event, settings, targets, aim, sounds):
 			
 def check_events_keyup( aim):
 	aim.see_me = False
+	
 				
-def check_events(targets, settings, aim, sounds):
+def check_events(targets, settings, stats, button, aim, sounds):
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
 			sys.exit()
-		elif event.type == pygame.KEYDOWN:
+		elif event.type == pygame.KEYDOWN and stats.game_active:
 			check_events_keydown(event, settings, targets, aim, sounds)
 		elif event.type == pygame.KEYUP:
 			check_events_keyup(aim)
+		elif event.type == pygame.MOUSEBUTTONDOWN and not stats.game_active:
+			mouse_x, mouse_y = pygame.mouse.get_pos()
+			check_play_button(targets, button, stats, mouse_x, mouse_y)
+
+
+def check_play_button(targets, button, stats, mouse_x, mouse_y):
+	'''
+	Update the status if the button is pressed
+	'''
+	if button.rect.collidepoint(mouse_x, mouse_y):
+		pygame.mouse.set_visible(False)
+		
+		'''stats.reset_stats()'''
+		stats.game_active = True
+		
+		#Clear the targets and start again
+		targets.empty()
+	
 	
 	
 def create_targets(screen, game_settings, targets):
@@ -62,16 +81,23 @@ def update_targets(screen, game_settings, targets):
 			targets.remove(target)
 			
 			
-def update_screen(screen, game_settings, targets, aim):
+def update_screen(screen, game_settings, stats, button, targets, aim):
 	#Refresh the screen in each loop
 	screen.fill(game_settings.bg_color)
 	
-	update_targets(screen, game_settings, targets)
+	#Always targets raining down
 	target_list = targets.sprites()
 	for target in target_list:
 		target.blitme()
-	
-	if aim.see_me:
-		aim.blitme()
 		
+	targets.update()
+	#If the game hasn't started, draw the button; otherwise, draw out the aim
+	if not stats.game_active:
+		button.draw_button()
+		
+	else:
+		if aim.see_me:
+			aim.blitme()
+	
+	
 	pygame.display.flip()

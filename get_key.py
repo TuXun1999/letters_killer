@@ -54,5 +54,7 @@ def get_key(event):
 		letter = 'n'
 	elif event.key == pygame.K_m:
 		letter = 'm'
+	else:
+		letter = ";"
 	
 	return letter	
