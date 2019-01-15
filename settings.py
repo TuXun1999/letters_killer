@@ -20,4 +20,10 @@ class Settings():
 		
 		
 		
-		self.button_pos_scale = 1.2
+		self.button_pos_scale = 1.4
+		
+		self.title = "LETTERS KILLER"
+		self.title_scale = 0.7
+		
+		self.man_scale_x = 1.5
+		self.man_scale_y = 1.2
